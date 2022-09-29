@@ -1,9 +1,9 @@
 // Coloque aqui suas actions
-export const EXAMPLE_ACTION = 'EXAMPLE_ACTION';
+export const EMAIL_ACTION = 'EMAIL_ACTION';
 
-export const selectForms = (state) => ({
-  type: EXAMPLE_ACTION,
+export const emailAction = (email) => ({
+  type: EMAIL_ACTION,
   payload: {
-    ...state,
+    email,
   },
 });
