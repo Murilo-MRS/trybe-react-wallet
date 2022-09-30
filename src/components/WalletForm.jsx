@@ -56,8 +56,8 @@ class WalletForm extends Component {
           <select data-testid="currency-input">
             {
               currenciesProps.map((currency) => (
-                <option key={ currency } value={ currency }>
-                  {currency}
+                <option key={ currency.code } value={ currency.code }>
+                  {currency.code}
                 </option>
               ))
             }
