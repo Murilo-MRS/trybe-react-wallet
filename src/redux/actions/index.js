@@ -6,6 +6,8 @@ export const RECEIVE_CURRENCY = 'RECEIVE_CURRENCY';
 export const FAILED_REQUEST = 'FAILED_REQUEST';
 const url = 'https://economia.awesomeapi.com.br/json/all';
 
+export const SAVE_EXPENSES = 'SAVE_EXPENSES';
+
 export const emailAction = (email) => ({
   type: EMAIL_ACTION,
   payload: {
@@ -32,4 +34,23 @@ export const fetchCurrency = () => async (dispatch) => {
   } catch (e) {
     throw new Error(e);
   }
+};
+
+export const expenseAction = (state, currencies) => ({
+  type: SAVE_EXPENSES,
+  payload: {
+    value: state.valueInput,
+    description: state.description,
+    currency: state.currencySelect,
+    method: state.methodSelect,
+    tag: state.tagSelect,
+    exchangeRates: currencies,
+  },
+});
+
+export const addExpense = (obj) => async (dispatch) => {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const data = await response.json();
+  delete data.USDT;
+  dispatch(expenseAction(obj, data));
 };
