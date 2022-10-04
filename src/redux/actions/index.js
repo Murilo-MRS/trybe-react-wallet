@@ -39,6 +39,7 @@ export const fetchCurrency = () => async (dispatch) => {
 export const expenseAction = (state, currencies) => ({
   type: SAVE_EXPENSES,
   payload: {
+    id: state.id,
     value: state.valueInput,
     description: state.description,
     currency: state.currencySelect,

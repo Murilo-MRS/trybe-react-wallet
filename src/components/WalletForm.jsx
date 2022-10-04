@@ -5,6 +5,7 @@ import { addExpense, fetchCurrency } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
+    id: 0,
     valueInput: '',
     description: '',
     currencySelect: 'USD',
@@ -24,11 +25,13 @@ class WalletForm extends Component {
 
   handleClick = async (e) => {
     const { addExpenseDispatch } = this.props;
+    const { id } = this.state;
     e.preventDefault();
 
     addExpenseDispatch(this.state);
 
     this.setState({
+      id: id + 1,
       valueInput: '',
       description: '',
       currencySelect: 'USD',
