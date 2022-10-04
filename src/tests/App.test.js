@@ -6,7 +6,7 @@ import { renderWithRouterAndRedux } from './helpers/renderWith';
 import Login from '../pages/Login';
 import Header from '../components/Header';
 import App from '../App';
-import WalletForm from '../components/WalletForm';
+import Wallet from '../pages/Wallet';
 
 describe('Testando a route Login', () => {
   test('teste de rotas /carteira e /', () => {
@@ -72,13 +72,14 @@ describe('Testando a route Login', () => {
   });
 
   test('Teste componente WalletForm', async () => {
-    renderWithRouterAndRedux(<WalletForm />);
+    renderWithRouterAndRedux(<Wallet />);
     const valueInput = screen.getByTestId('value-input');
     const descriptionInput = screen.getByTestId('description-input');
     const currencyInput = screen.getByTestId('currency-input');
     const methodInput = screen.getByTestId('method-input');
     const tagInput = screen.getByTestId('tag-input');
     const btnAddExpense = screen.getByRole('button', { name: /Adicionar despesa/i });
+    const table = screen.getByRole('table');
 
     expect(valueInput).toBeInTheDocument();
     expect(descriptionInput).toBeInTheDocument();
@@ -86,6 +87,7 @@ describe('Testando a route Login', () => {
     expect(methodInput).toBeInTheDocument();
     expect(tagInput).toBeInTheDocument();
     expect(btnAddExpense).toBeInTheDocument();
+    expect(table).toBeInTheDocument();
 
     userEvent.type(valueInput, '2');
     userEvent.type(descriptionInput, 'dois dolares');
