@@ -56,7 +56,7 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
           />
         </label>
-        <label htmlFor="value-input">
+        <label htmlFor="description-input">
           Descrição:
           {' '}
           <input

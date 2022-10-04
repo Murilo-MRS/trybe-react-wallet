@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { emailAction } from '../redux/actions';
 
 class Login extends React.Component {
@@ -8,6 +9,7 @@ class Login extends React.Component {
     email: '',
     password: '',
     btnDisabled: true,
+    loggedIn: false,
   };
 
   handleChange = ({ target }) => {
@@ -31,13 +33,14 @@ class Login extends React.Component {
   handleClick = (e) => {
     e.preventDefault();
     const { email } = this.state;
-    const { emailToStore, history } = this.props;
+    const { emailToStore } = this.props;
     emailToStore(email);
-    history.push('/carteira');
+    // history.push('/carteira');
+    this.setState({ loggedIn: true });
   };
 
   render() {
-    const { email, password, btnDisabled } = this.state;
+    const { email, password, btnDisabled, loggedIn } = this.state;
 
     return (
       <div>
@@ -66,6 +69,7 @@ class Login extends React.Component {
         <button type="button" disabled={ btnDisabled } onClick={ this.handleClick }>
           Entrar
         </button>
+        {loggedIn && <Redirect to="/carteira" />}
       </div>
     );
   }
