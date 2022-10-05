@@ -8,6 +8,8 @@ const url = 'https://economia.awesomeapi.com.br/json/all';
 
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
 export const REMOVE_EXPENSES = 'REMOVE_EXPENSES';
+export const EDIT_EXPENSES = 'EDIT_EXPENSES';
+export const EDIT_COMPLETE = 'EDIT_COMPLETE';
 
 export const emailAction = (email) => ({
   type: EMAIL_ACTION,
@@ -61,3 +63,13 @@ export const addExpense = (obj) => async (dispatch) => {
   delete data.USDT;
   dispatch(expenseAction(obj, data));
 };
+
+export const editExpenseAction = (payload) => ({
+  type: EDIT_EXPENSES,
+  payload,
+});
+
+export const editExpense = (payload) => ({
+  type: EDIT_COMPLETE,
+  payload,
+});

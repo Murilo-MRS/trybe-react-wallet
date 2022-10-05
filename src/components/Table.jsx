@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { removeExpenseAction } from '../redux/actions';
+import { editExpenseAction, removeExpenseAction } from '../redux/actions';
 
 class Table extends Component {
   handleDelete = ({ target: { parentElement: { parentElement } } }) => {
     const { expenses, removeExpenseDispatch } = this.props;
-    // console.log(parentElement.id);
     const deletedExpense = expenses.filter((e) => e.id !== Number(parentElement.id));
     removeExpenseDispatch(deletedExpense);
+  };
+
+  handleEdit = ({ target: { parentElement: { parentElement } } }) => {
+    // AJUDA DA CAREN PONTES TRIBO 24-A
+    const { editExpenseDispatch } = this.props;
+    editExpenseDispatch(Number(parentElement.id));
   };
 
   render() {
@@ -46,7 +51,7 @@ class Table extends Component {
                   <button
                     data-testid="edit-btn"
                     type="button"
-                    onClick={ this.handleClick }
+                    onClick={ this.handleEdit }
                   >
                     Editar
                   </button>
@@ -72,7 +77,7 @@ Table.propTypes = {
 }.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
-  // fetchCurrencyDispatch: () => dispatch(fetchCurrency()),
+  editExpenseDispatch: (id) => dispatch(editExpenseAction(id)),
   removeExpenseDispatch: (array) => dispatch(removeExpenseAction(array)),
 });
 

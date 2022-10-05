@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addExpense, fetchCurrency } from '../redux/actions';
+import { addExpense, fetchCurrency, editExpense } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -25,11 +25,45 @@ class WalletForm extends Component {
 
   handleClick = async (e) => {
     const { addExpenseDispatch } = this.props;
-    const { id } = this.state;
     e.preventDefault();
 
     addExpenseDispatch(this.state);
 
+    this.resetValues();
+  };
+
+  handleEditExpense = async (e) => {
+    const { editExpenseDispatch, expenses, idToEditProps } = this.props;
+    e.preventDefault();
+    const {
+      valueInput,
+      description,
+      currencySelect,
+      methodSelect,
+      tagSelect,
+    } = this.state;
+
+    const editedObjsExchange = expenses.filter((element) => element.id === idToEditProps);
+    const oldExchange = editedObjsExchange[0].exchangeRates;
+    const exludedObjs = expenses.filter((element) => element.id !== idToEditProps);
+
+    const editedObject = {
+      id: idToEditProps,
+      value: valueInput,
+      description,
+      currency: currencySelect,
+      method: methodSelect,
+      tag: tagSelect,
+      exchangeRates: oldExchange,
+    };
+
+    const newExpenses = [...exludedObjs, editedObject].sort((a, b) => a.id - b.id);
+    editExpenseDispatch(newExpenses);
+    this.resetValues();
+  };
+
+  resetValues = () => {
+    const { id } = this.state;
     this.setState({
       id: id + 1,
       valueInput: '',
@@ -43,7 +77,7 @@ class WalletForm extends Component {
   render() {
     const { valueInput, description, currencySelect,
       methodSelect, tagSelect } = this.state;
-    const { currenciesProps } = this.props;
+    const { currenciesProps, editorProps } = this.props;
     return (
       <form>
         <label htmlFor="value-input">
@@ -116,7 +150,25 @@ class WalletForm extends Component {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
-        <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>
+        {
+          editorProps
+            ? (
+              <button
+                type="button"
+                onClick={ this.handleEditExpense }
+              >
+                Editar despesa
+              </button>
+            )
+            : (
+              <button
+                type="button"
+                onClick={ this.handleClick }
+              >
+                Adicionar despesa
+              </button>
+            )
+        }
       </form>
     );
   }
@@ -132,10 +184,14 @@ WalletForm.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrencyDispatch: () => dispatch(fetchCurrency()),
   addExpenseDispatch: (state) => dispatch(addExpense(state)),
+  editExpenseDispatch: (array) => dispatch(editExpense(array)),
 });
 
 const mapStateToProps = (state) => ({
   currenciesProps: state.wallet.currencies,
+  editorProps: state.wallet.editor,
+  expenses: state.wallet.expenses,
+  idToEditProps: state.wallet.idToEdit,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
