@@ -102,7 +102,14 @@ describe('Testando a route Login', () => {
     expect(btnEditExpense).toBeInTheDocument();
     expect(tableRow).toBeInTheDocument();
 
-    userEvent.click(btnRemoveExpense);
     userEvent.click(btnEditExpense);
+
+    const btnFinishEdit = await screen.getByRole('button', { name: /Editar despesa/i });
+    expect(btnFinishEdit).toBeInTheDocument();
+
+    userEvent.click(btnFinishEdit);
+
+    userEvent.click(btnRemoveExpense);
+    expect(tableRow).not.toBeInTheDocument();
   });
 });
