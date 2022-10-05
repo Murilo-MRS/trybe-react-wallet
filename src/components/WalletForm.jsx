@@ -9,8 +9,8 @@ class WalletForm extends Component {
     valueInput: '',
     description: '',
     currencySelect: 'USD',
-    methodSelect: 'money',
-    tagSelect: 'food',
+    methodSelect: 'Dinheiro',
+    tagSelect: 'Alimentação',
   };
 
   componentDidMount() {
@@ -35,8 +35,8 @@ class WalletForm extends Component {
       valueInput: '',
       description: '',
       currencySelect: 'USD',
-      methodSelect: 'money',
-      tagSelect: 'food',
+      methodSelect: 'Dinheiro',
+      tagSelect: 'Alimentação',
     });
   };
 
