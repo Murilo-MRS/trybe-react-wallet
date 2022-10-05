@@ -12,7 +12,7 @@ class Header extends Component {
           <div className="header-currency-info">
             <div data-testid="total-field">
               {expenses.length === 0
-                ? 0
+                ? (0).toFixed(2)
                 : expenses
                   .reduce(
                     (acc, curr) => parseFloat(

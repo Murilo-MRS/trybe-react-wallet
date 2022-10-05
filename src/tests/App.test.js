@@ -91,12 +91,18 @@ describe('Testando a route Login', () => {
 
     userEvent.type(valueInput, '2');
     userEvent.type(descriptionInput, 'dois dolares');
-    // userEvent.selectOptions();
     userEvent.click(btnAddExpense);
-    // await expect().toBe('2');
 
-    // botao de editar aparece
+    const btnRemoveExpense = await screen.findByTestId('delete-btn');
+    const btnEditExpense = await screen.findByTestId('edit-btn');
+    const tableRow = await screen.findByRole('row', {
+      name: /dois dolares alimentação dinheiro 2\.00 dólar americ/i,
+    });
+    expect(btnRemoveExpense).toBeInTheDocument();
+    expect(btnEditExpense).toBeInTheDocument();
+    expect(tableRow).toBeInTheDocument();
 
-    // botao de apagar aparece
+    userEvent.click(btnRemoveExpense);
+    userEvent.click(btnEditExpense);
   });
 });

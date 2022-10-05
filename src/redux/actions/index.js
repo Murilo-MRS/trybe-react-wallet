@@ -7,6 +7,7 @@ export const FAILED_REQUEST = 'FAILED_REQUEST';
 const url = 'https://economia.awesomeapi.com.br/json/all';
 
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
+export const REMOVE_EXPENSES = 'REMOVE_EXPENSES';
 
 export const emailAction = (email) => ({
   type: EMAIL_ACTION,
@@ -47,6 +48,11 @@ export const expenseAction = (state, currencies) => ({
     tag: state.tagSelect,
     exchangeRates: currencies,
   },
+});
+
+export const removeExpenseAction = (payload) => ({
+  type: REMOVE_EXPENSES,
+  payload,
 });
 
 export const addExpense = (obj) => async (dispatch) => {
