@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { editExpenseAction, removeExpenseAction } from '../redux/actions';
+// import '../styles/Table.css';
 
 class Table extends Component {
   handleDelete = ({ target: { parentElement: { parentElement } } }) => {

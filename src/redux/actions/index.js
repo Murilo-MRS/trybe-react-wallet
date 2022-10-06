@@ -27,16 +27,12 @@ function getCurrencies(payload) {
 }
 
 export const fetchCurrency = () => async (dispatch) => {
-  try {
-    dispatch(requestCurrencies());
-    const response = await fetch(url);
-    const result = await response.json();
-    const valuesCurrency = Object.keys(result);
-    const filtered = valuesCurrency.filter((e) => e !== 'USDT');
-    dispatch(getCurrencies(filtered));
-  } catch (e) {
-    throw new Error(e);
-  }
+  dispatch(requestCurrencies());
+  const response = await fetch(url);
+  const result = await response.json();
+  const valuesCurrency = Object.keys(result);
+  const filtered = valuesCurrency.filter((e) => e !== 'USDT');
+  dispatch(getCurrencies(filtered));
 };
 
 export const expenseAction = (state, currencies) => ({

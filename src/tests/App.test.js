@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, act } from '@testing-library/react';
+import { screen, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 // import { renderWithRedux, renderWithRouter, renderWithRouterAndRedux } from './helpers/renderWith';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
@@ -7,8 +7,10 @@ import Login from '../pages/Login';
 import Header from '../components/Header';
 import App from '../App';
 import Wallet from '../pages/Wallet';
+import mockData from './helpers/mockData';
 
 describe('Testando a route Login', () => {
+  afterEach(() => jest.clearAllMocks());
   test('teste de rotas /carteira e /', () => {
     const { history } = renderWithRouterAndRedux(<App />);
     act(() => {
@@ -104,12 +106,20 @@ describe('Testando a route Login', () => {
 
     userEvent.click(btnEditExpense);
 
-    const btnFinishEdit = await screen.getByRole('button', { name: /Editar despesa/i });
+    const btnFinishEdit = await screen.findByRole('button', { name: /Editar despesa/i });
     expect(btnFinishEdit).toBeInTheDocument();
 
     userEvent.click(btnFinishEdit);
 
     userEvent.click(btnRemoveExpense);
     expect(tableRow).not.toBeInTheDocument();
+  });
+
+  test('Verifica chamada da Api', async () => {
+    jest.spyOn(global, 'fetch').mockImplementation(async () => ({ json: async () => mockData }));
+    renderWithRouterAndRedux(<Wallet />);
+    const currencies = screen.getByTestId('currency-input');
+    await waitFor(() => userEvent.selectOptions(currencies, 'USD'));
+    expect(fetch).toHaveBeenCalled();
   });
 });
