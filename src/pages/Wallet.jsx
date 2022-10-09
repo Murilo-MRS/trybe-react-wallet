@@ -8,12 +8,13 @@ import WalletForm from '../components/WalletForm';
 class Wallet extends React.Component {
   render() {
     return (
-      <div>
-        <h3>TrybeWallet</h3>
-        <Header />
-        <WalletForm />
+      <section>
+        <section className="box is-justify-content-space-between mx-6">
+          <Header />
+          <WalletForm />
+        </section>
         <Table />
-      </div>
+      </section>
     );
   }
 }
