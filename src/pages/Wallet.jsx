@@ -4,17 +4,21 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Table from '../components/Table';
 import WalletForm from '../components/WalletForm';
+import '../styles/Wallet.css';
 
 class Wallet extends React.Component {
   render() {
     return (
-      <section>
-        <section className="box is-justify-content-space-between mx-6">
+      <main className="wallet-page is-flex is-flex-direction-column ">
+        <section className="box mx-6">
           <Header />
           <WalletForm />
         </section>
-        <Table />
-      </section>
+        <section className="expenses-table my-6">
+          <Table />
+        </section>
+        <section className="section is-large" />
+      </main>
     );
   }
 }

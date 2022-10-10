@@ -5,13 +5,25 @@ import { editExpenseAction, removeExpenseAction } from '../redux/actions';
 // import '../styles/Table.css';
 
 class Table extends Component {
-  handleDelete = ({ target: { parentElement: { parentElement } } }) => {
+  handleDelete = ({
+    target: {
+      parentElement: {
+        parentElement: { parentElement },
+      },
+    },
+  }) => {
     const { expenses, removeExpenseDispatch } = this.props;
-    const deletedExpense = expenses.filter((e) => e.id !== Number(parentElement.id));
+    const deletedExpense = expenses.filter(
+      (e) => e.id !== Number(parentElement.id),
+    );
     removeExpenseDispatch(deletedExpense);
   };
 
-  handleEdit = ({ target: { parentElement: { parentElement } } }) => {
+  handleEdit = ({
+    target: {
+      parentElement: { parentElement },
+    },
+  }) => {
     // AJUDA DA CAREN PONTES TRIBO 24-A
     const { editExpenseDispatch } = this.props;
     editExpenseDispatch(Number(parentElement.id));
@@ -20,8 +32,8 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <div>
-        <table>
+      <div className="box table-container mx-6 is-flex">
+        <table className="table is-fullwidth is-hoverable">
           <thead>
             <tr>
               <th>Descrição</th>
@@ -49,20 +61,28 @@ class Table extends Component {
                 </td>
                 <td>Real</td>
                 <td>
-                  <button
-                    data-testid="edit-btn"
-                    type="button"
-                    onClick={ this.handleEdit }
-                  >
-                    Editar
-                  </button>
-                  <button
-                    data-testid="delete-btn"
-                    type="button"
-                    onClick={ this.handleDelete }
-                  >
-                    Excluir
-                  </button>
+                  <div className="buttons">
+                    <button
+                      data-testid="edit-btn"
+                      type="button"
+                      className="button is-info is-small is-rounded"
+                      onClick={ this.handleEdit }
+                    >
+                      {/* <span className="icon is-small">
+                        <i className="fas fa-pen" />
+                      </span> */}
+                    </button>
+                    <button
+                      data-testid="delete-btn"
+                      type="button"
+                      className="button is-danger is-small is-rounded"
+                      onClick={ this.handleDelete }
+                    >
+                      {/* <span className="icon is-small">
+                        <i className="fas fa-trash" />
+                      </span> */}
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

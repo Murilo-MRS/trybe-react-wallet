@@ -79,7 +79,7 @@ class WalletForm extends Component {
       methodSelect, tagSelect } = this.state;
     const { currenciesProps, editorProps } = this.props;
     return (
-      <form className="field is-horizontal is-grouped is-grouped-centered">
+      <form className="field is-horizontal is-grouped is-grouped-centered mx-6">
         <label className="field-label control" htmlFor="value-input">
 
           <input
@@ -90,7 +90,7 @@ class WalletForm extends Component {
             id="value-input"
             data-testid="value-input"
             onChange={ this.handleChange }
-            className="input is-medium is-primary"
+            className="input is-medium is-success"
             placeholder="Valor"
           />
         </label>
@@ -102,13 +102,13 @@ class WalletForm extends Component {
             step="0.01"
             id="description-input"
             data-testid="description-input"
-            className="input is-medium is-primary"
+            className="input is-medium is-success"
             onChange={ this.handleChange }
             placeholder="Descrição"
           />
         </label>
         <label className="field-label control" htmlFor="currency-input">
-          <div className="select is-primary is-medium is-fullwidth">
+          <div className="select is-success is-medium is-fullwidth">
             <select
               data-testid="currency-input"
               name="currencySelect"
@@ -126,7 +126,7 @@ class WalletForm extends Component {
           </div>
         </label>
         <label className="field-label control" htmlFor="method-input">
-          <div className="select is-primary is-medium is-fullwidth">
+          <div className="select is-success is-medium is-fullwidth">
             <select
               name="methodSelect"
               value={ methodSelect }
@@ -141,7 +141,7 @@ class WalletForm extends Component {
           </div>
         </label>
         <label className="field-label control" htmlFor="tag-input">
-          <div className="select is-primary is-medium is-fullwidth">
+          <div className="select is-success is-medium is-fullwidth">
             <select
               name="tagSelect"
               value={ tagSelect }
@@ -162,7 +162,7 @@ class WalletForm extends Component {
             editorProps
               ? (
                 <button
-                  className="button is-primary is-medium"
+                  className="button is-success is-medium"
                   type="button"
                   onClick={ this.handleEditExpense }
                 >
@@ -171,7 +171,7 @@ class WalletForm extends Component {
               )
               : (
                 <button
-                  className="button is-primary is-medium"
+                  className="button is-success is-medium"
                   type="button"
                   onClick={ this.handleClick }
                 >
