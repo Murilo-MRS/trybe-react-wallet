@@ -21,7 +21,9 @@ class Table extends Component {
 
   handleEdit = ({
     target: {
-      parentElement: { parentElement },
+      parentElement: {
+        parentElement: { parentElement },
+      },
     },
   }) => {
     // AJUDA DA CAREN PONTES TRIBO 24-A
@@ -33,7 +35,7 @@ class Table extends Component {
     const { expenses } = this.props;
     return (
       <div className="box table-container mx-6 is-flex">
-        <table className="table is-fullwidth is-hoverable">
+        <table className="table is-fullwidth is-hoverable fullheight">
           <thead>
             <tr>
               <th>Descrição</th>
@@ -65,22 +67,18 @@ class Table extends Component {
                     <button
                       data-testid="edit-btn"
                       type="button"
-                      className="button is-info is-small is-rounded"
+                      className="button is-info is-small"
                       onClick={ this.handleEdit }
                     >
-                      {/* <span className="icon is-small">
-                        <i className="fas fa-pen" />
-                      </span> */}
+                      Editar
                     </button>
                     <button
                       data-testid="delete-btn"
                       type="button"
-                      className="button is-danger is-small is-rounded"
+                      className="button is-danger is-small"
                       onClick={ this.handleDelete }
                     >
-                      {/* <span className="icon is-small">
-                        <i className="fas fa-trash" />
-                      </span> */}
+                      Excluir
                     </button>
                   </div>
                 </td>
