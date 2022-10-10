@@ -79,10 +79,9 @@ class WalletForm extends Component {
       methodSelect, tagSelect } = this.state;
     const { currenciesProps, editorProps } = this.props;
     return (
-      <form>
-        <label htmlFor="value-input">
-          Valor:
-          {' '}
+      <form className="field is-horizontal is-grouped is-grouped-centered">
+        <label className="field-label control" htmlFor="value-input">
+
           <input
             type="text"
             name="valueInput"
@@ -91,11 +90,11 @@ class WalletForm extends Component {
             id="value-input"
             data-testid="value-input"
             onChange={ this.handleChange }
+            className="input is-medium is-primary"
+            placeholder="Valor"
           />
         </label>
-        <label htmlFor="description-input">
-          Descrição:
-          {' '}
+        <label className="field-label control" htmlFor="description-input">
           <input
             type="text"
             name="description"
@@ -103,72 +102,84 @@ class WalletForm extends Component {
             step="0.01"
             id="description-input"
             data-testid="description-input"
+            className="input is-medium is-primary"
             onChange={ this.handleChange }
+            placeholder="Descrição"
           />
         </label>
-        <label htmlFor="currency-input">
-          <select
-            data-testid="currency-input"
-            name="currencySelect"
-            value={ currencySelect }
-            onChange={ this.handleChange }
-          >
-            {
-              currenciesProps.map((currency) => (
-                <option key={ currency } value={ currency }>
-                  {currency}
-                </option>
-              ))
-            }
-          </select>
+        <label className="field-label control" htmlFor="currency-input">
+          <div className="select is-primary is-medium is-fullwidth">
+            <select
+              data-testid="currency-input"
+              name="currencySelect"
+              value={ currencySelect }
+              onChange={ this.handleChange }
+            >
+              {
+                currenciesProps.map((currency) => (
+                  <option key={ currency } value={ currency }>
+                    {currency}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
         </label>
-        <label htmlFor="method-input">
-          <select
-            name="methodSelect"
-            value={ methodSelect }
-            onChange={ this.handleChange }
-            id="method-input"
-            data-testid="method-input"
-          >
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
+        <label className="field-label control" htmlFor="method-input">
+          <div className="select is-primary is-medium is-fullwidth">
+            <select
+              name="methodSelect"
+              value={ methodSelect }
+              onChange={ this.handleChange }
+              id="method-input"
+              data-testid="method-input"
+            >
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+            </select>
+          </div>
         </label>
-        <label htmlFor="tag-input">
-          <select
-            name="tagSelect"
-            value={ tagSelect }
-            onChange={ this.handleChange }
-            id="tag-input"
-            data-testid="tag-input"
-          >
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
+        <label className="field-label control" htmlFor="tag-input">
+          <div className="select is-primary is-medium is-fullwidth">
+            <select
+              name="tagSelect"
+              value={ tagSelect }
+              onChange={ this.handleChange }
+              id="tag-input"
+              data-testid="tag-input"
+            >
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </select>
+          </div>
         </label>
-        {
-          editorProps
-            ? (
-              <button
-                type="button"
-                onClick={ this.handleEditExpense }
-              >
-                Editar despesa
-              </button>
-            )
-            : (
-              <button
-                type="button"
-                onClick={ this.handleClick }
-              >
-                Adicionar despesa
-              </button>
-            )
-        }
+        <div className="control">
+          {
+            editorProps
+              ? (
+                <button
+                  className="button is-primary is-medium"
+                  type="button"
+                  onClick={ this.handleEditExpense }
+                >
+                  Editar despesa
+                </button>
+              )
+              : (
+                <button
+                  className="button is-primary is-medium"
+                  type="button"
+                  onClick={ this.handleClick }
+                >
+                  Adicionar despesa
+                </button>
+              )
+          }
+        </div>
       </form>
     );
   }
