@@ -1,4 +1,4 @@
-# Projeto TrybeWallet
+# Projeto TrybeWallet :wallet:
 Projeto realizado durante módulo de Front-end do curso de desenvolvimento web da Trybe.
 
 <details>
