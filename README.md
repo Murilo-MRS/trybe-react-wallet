@@ -11,6 +11,7 @@ Projeto realizado durante módulo de Front-end do curso de desenvolvimento web d
   - Adicionar, remover e editar um gasto;
   - Visualizar uma tabelas com seus gastos;
   - Visualizar o total de gastos convertidos para uma moeda de escolha;
+  - [Docs da API de moedas](https://docs.awesomeapi.com.br/api-de-moedas);
 
 </details>
 
