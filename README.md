@@ -24,7 +24,8 @@ Projeto realizado durante módulo de Front-end do curso de desenvolvimento web d
   - Criado actions no `Redux` em aplicações `React`
   - Criado dispatchers no `Redux` em aplicações `React`
   - Conectar `Redux` aos componentes `React`
-  - Criado actions assíncronas na sua aplicação `React` que faz uso de `Redux`.
+  - Criado actions assíncronas na sua aplicação `React` que faz uso de `Redux`;
+  - Testes do app;
 
 </details>
 
